@@ -1,0 +1,35 @@
+.fuckInlineStyles {
+   transform-origin: top left;
+   margin-left: 10px;
+   blockquote {
+   	  transform-origin: top left;
+   	  margin-left: 0;
+   }
+}
+
+@media screen and (min-width: 750px) {
+.fuckInlineStyles {
+   transform: scale(1.5);
+   blockquote {
+   transform: scale(.667);
+   }
+ }
+}
+
+@media screen and (min-width: 1000px) {
+.fuckInlineStyles {
+   transform: scale(2);
+   blockquote {
+   transform: scale(.5);
+   }
+  }
+}
+
+@media screen and (min-width: 1400px) {
+.fuckInlineStyles {
+   transform: scale(3);
+   blockquote {
+     transform: scale(.333);
+   }
+  }
+}

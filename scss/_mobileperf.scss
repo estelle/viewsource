@@ -1,0 +1,336 @@
+.note {
+	opacity: 0.1;
+	font-size: 0.9rem;
+}
+
+.break {
+	background-image:url(../img/break.svg);  
+	background-position: top right;
+	section h1 {
+		color: #E65F00;
+		text-shadow: 
+			  3px 3px 3px rgba(0,0,0,0.4),
+			 -1px -1px 0px rgba(255,255,255,0.7);
+		width: 60%;
+		text-align: center;
+		float: right;
+		margin-right: 10vw;
+		font-size: calc((8vh + 8vw) / 2);
+	}
+}
+
+.credit footer {
+	position: absolute;
+	bottom: 1vh; right: 1vw;
+	font-size: small;
+}
+
+.fullimg {
+	height: 100vh;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	h1 {	
+		background: rgba(255,255,255,0.7);
+	}
+	&.phonedistribution {
+		background-image: url(../img/phonedist.png);
+		background-position: 25% 50%;
+	}
+	&.seasiacoverage {
+		background-image: url(../img/coverage.png);
+	}
+}
+
+.jaguar {
+	background-image:url(../img/jaguar.jpg); 
+	background-size:cover;
+	section {
+		height: 80vh;
+	}
+	ul { 
+		color:#fff; 
+		 list-style-type: none;
+		}
+	ul:first-of-type li {
+		font-size: 8vh; 
+		font-weight: bold;
+	}
+	ul:last-of-type {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+	}
+}
+
+.wholepoint {
+  position: absolute;
+  bottom: 20vh;
+  right: 20px;
+  font-size: 1rem;
+  padding: 20px;
+  border-radius: 3px;
+  border: 1px solid $ilblue;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1), -3px -3px 3px rgba(0, 0, 0, 0.1);
+  background-color: white; 
+}
+
+.arrow {
+    justify-content: flex-start;
+    margin-right: 2em;
+    background-image:
+      linear-gradient(
+          transparent 25%, 
+          $ilblue 25%,  
+          $ilblue 75%, 
+          transparent 75%);
+    position: relative;
+    &::after {
+      content: "";
+      height: 0; width: 0;
+      position: absolute;
+      left: 100%;
+      top: -0.15em;
+      border: 1.5em solid transparent;
+      border-left-color: $ilblue;
+
+    }
+  li {
+    background-color:white;
+    font-size: 0.6rem;
+    font-family: serif;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid $ilblue;
+    border-radius: 5px;
+    flex: 1;
+    max-width: 6.5%;
+    text-align: center;
+    box-shadow: 3px 3px 3px rgba(0,0,0,0.2);
+  }
+}
+
+.bluearrow {
+	position: absolute;
+	top: 6rem;
+	left: 48%;
+	overflow: visible;
+	&::before,
+	&::after {
+		height: 0;
+		width: 0;
+		content: "";
+		color: $ilblue;
+		transform: rotate(-28deg);
+		position: absolute;
+		left: 0;
+	}
+	&::before {
+		width: 100px;
+		height: 20px;
+		background:  $ilblue; top: 40px; 
+	}
+	&::after {
+		border: 30px transparent solid;
+		border-right-color: inherit;
+		left: -50px;
+		top: 57px;
+	}
+}
+
+.plane {
+	position: absolute; 
+	top:  calc((10vw+10vh)/2); 
+	left:  calc((5vw+5vh)/2); 
+	width: calc((100vw+100vh)/2)
+}
+.paperplane {
+	position: absolute; 
+	top: calc((80vw+80vh)/2); 
+	left: calc((80vw+80vh)/2); 
+	width: calc((25vw+25vh)/2)
+}
+.drone {
+	position: absolute;  
+	width: calc((40vw+40vh)/2);
+	top:   calc((50vw+50vh)/2); 
+	left:  calc((50vw+50vh)/2);
+}
+
+.hidden_dd {
+  margin-top: 0;
+  transform: translatey(-1vh);
+  max-height: 80vh;
+  overflow: scroll;
+  margin-bottom: 3vh; 
+  dt {
+    margin-bottom: 0;
+    margin-top: 0.2rem;
+    padding-left: 5px;
+    font-weight: bold;
+    display: block;
+    clear: both;
+    border-bottom: 1px solid #dedede;
+    font-size: 1.6rem; 
+    &:hover {
+      color: #ffffff;
+      background-color: #226DAA;
+      border-bottom: 1px solid #226DAA; 
+ 	 }
+ 	}
+   dd {
+    position: absolute;
+    top: -301vh;
+    font-size: 1rem;
+    margin-left: 0;
+    padding: 5px 5px 10px 10px; *{
+    font-size: 1rem;}}
+  dt:hover + dd {
+    position: static;
+    background-color: #dedede;
+  } 
+}
+
+.halfwidth dd {
+  width: 50%; }
+
+.phonemask {
+	width: 182px; height: 356px;
+	background-image: url(../img/oldiphone.jpg);
+	padding: 99px 11px 80px 12px;
+	box-sizing: border-box;
+ 	div {
+ 		height: 100%;
+ 		width: 100%;
+ 		background-image: url(../img/alexa.gif);
+ 		background-size: 400px auto;
+		&.contain {
+			background-size: cover;
+		}
+	}
+  + .arrow {
+  	background: none;
+  	width: 100px;
+  	position:relative;
+  	padding-left: 40px;
+  	&::before, &::after {
+  		height: 0;
+		width: 0;
+		content: "";
+		color: $ilblue;
+		position: absolute;
+	}
+  	&::before {
+		width: 100px;
+		height: 20px;
+		background:  $ilblue; top: 90px; 
+	}
+	&::after {
+		border: 30px transparent solid;
+		border-left-color: inherit;
+		top: 70px;
+		right: 0;
+	}
+
+  }
+}
+
+.hoverhilite.bad:hover {
+	display: inline-block; white-space: normal; width: 18rem;
+	background: linear-gradient(to bottom right, transparent 45%, red 45%, red 55%, transparent 55%),
+	linear-gradient(to bottom left, transparent 45%, red 45%, red 55%, transparent 55%),
+}
+
+.lineone {
+	ol > li::first-line {
+		color: white; 
+		background-color: $ilblue; 
+	}
+}
+
+.cloudfour {
+	align-items: flex-end;
+	pre {
+    	font-size: 0.8rem;
+    	padding: 10px 20px;
+    	background: none;
+	}
+	img {
+		text-align: center;
+    	background-color: rgb(34, 109, 170);
+    	margin: 0 10px;
+    	border: 1px solid initial;
+    	padding: 20px 20px 0 0;
+	}
+}
+
+.important {
+	text-transform: uppercase;
+	color: $ilblue;
+	font-weight: bold;
+}
+
+.conclude {
+	 text-align: center;
+	 color: $black;
+	 line-height: 2.8rem;
+	 strong {
+	 	color: $ilblue;
+	 	font-size: 2.5rem;
+	 } }
+.lessimportant {
+	opacity: 0.25;
+} 
+.rail .icon {
+  display: block; }
+.rail ul, .rail ol {
+  display: flex;
+  list-style-type: none; }
+.rail ul {
+  justify-content: center; }
+  .rail ul li {
+    height: 4vh;
+    margin: 0.1vw;
+    border: 1px solid black; }
+.rail ol {
+  justify-content: space-around; }
+  .rail ol li {
+    border: 1px solid black;
+    flex: 1;
+    margin: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; }
+.rail .r {
+  background-color: #fee49d;
+   }
+.rail .a {
+  background-color: #1ea763;
+  color: #fff; 
+
+}
+.rail .i {
+  background-color: #cadaf7; 
+  }
+.rail .l {
+  background-color: #407ad5;
+  color: #fff; 
+
+  
+}
+ .rail ol li {
+ 	position: relative;
+ &:after {
+ 	position: absolute;
+ 	bottom: 0; left: 0;
+ 	font-size: small;
+ }
+}
+
+  .rail ol .r::after {content: "100ms";}
+  .rail ol .a::after {content: "16ms";}
+  .rail ol .i::after {content: "50ms";}
+  .rail ol .l::after {content: "1s";}

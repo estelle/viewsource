@@ -1,0 +1,1727 @@
+<!DOCTYPE HTML>
+<html>
+<head> 
+<meta charset="utf-8" />
+<title>Mobile Performance</title>
+<!--
+Made by: Estelle Weyl
+Copyright:  CC-SA-NC-BY - Creative Commons Attribution-NonCommercial-ShareAlike
+Based on: http://estelle.github.com/slides 
+-->  
+<meta name="description" content="
+Some of your users are on mobile browsers that may be more advanced than the desktop browsers of other users, but chances are those phones with their advanced browsers may have similar memory and bandwidth constraints to the computer you threw out or recycled 5 years ago.
+
+While as developers we’re finally enjoying the ubiquity of modern browsers accessing the web, it’s the devices themselves that are now creating constraints we always need to consider. The issue with mobile isn’t Old IE,  but rather battery life, latency, memory and UI responsiveness. In this session we'll discuss best practices to make sure your site performs well, no matter how your user is accessing your content." /> 
+<style>
+.slide {
+	position: relative;
+	min-height: 60vh;
+}
+</style>
+<link class="removeForAT" rel="stylesheet" href="css/index.css">
+	
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+<style>.icon {
+  font-family: "Material Icons";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 48px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  word-wrap: normal;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}</style>
+<base target="play"/>
+</head>
+
+<body> 
+
+<div id="presentation">
+   <div id="slides">
+   
+  
+<!-- TITLE SLIDE --> 
+  <div class="slide intro">
+    <section>
+    <h1 style="font-size: 3rem; margin-top: 10%;">Mobile Web Performance</h1>
+      
+      <p><a href="http://instartlogic.github.io/p/mobileperf">http://instartlogic.github.io/p/mobileperf</a></p>
+      <button id="killCSS" class="skiplink">Enable Screen Reader Access</button>
+    </section>
+</div>
+
+
+<!-- Don't break the mobile web-->
+<div class="slide break">
+	<header>
+		<h1><!--Mobile Web Performance--></h1>
+	</header>
+	<section>
+	<h1>Don't Break the Mobile Web</h1>
+	<p class="note">Web View</p>
+	</section>
+</div>
+
+<div class="slide jaguar">
+     <header>
+     <h1 style="color:#fff; font-size: 8vh;">Fast to ....
+</h1>
+     </header> 
+     <section>
+     <ul>
+     	<li style="transform: translate(10vw, 0px)">Load</li>
+     	<li style="transform: translate(45vw, 10px)">Render</li>
+        <li style="transform: translate(5vw, 30vh);">Respond</li>
+        <li style="transform:translate(50vw, 35vh);">Understand</li>
+        </ul>
+        
+     <ul class="temphidden">
+        <li>Beautiful</li>
+        <li>Useful</li>
+        <li>Eco-friendly</li>
+     </ul>
+     <p style="position: absolute; bottom: 10px; left: 10px"><a href="http://www.mypcwallpaper.com/wp-content/uploads/2011/02/running_cheetah_wallpaper1.jpg">mypcwallpaper.com</a></p>
+     </section></div>
+
+<!-- Talk Table of Contents-->
+<div class="slide divider">
+	<header>
+		<h1>Mobile Web Performance</h1>
+	</header>
+	<section>
+	<ol>
+	<li>Current Ecosystem</li>
+	<li>Performance Concerns</li>
+	<li>Issues and Solutions</li>
+	</ol>
+	</section>
+</div>
+
+
+
+
+
+
+<!-- ESTELLE WEYL -->
+<div class="slide">
+<section>
+<div class="flex">
+<div>
+<h1>Estelle Weyl</h1>
+
+<p>Open Web Evangelist<br/>
+<a href="http://instartlogic.com">Instart Logic</a>
+</p>
+<p>
+Twitter: <br/><a href="http://www.twitter.com/webdevtips">@webdevtips</a> <br/> <a href="http://www.twitter.com/estellevw">@estellevw</a> <br/> <a href="http://www.twitter.com/standardista">@standardista</a></p><p>Blog: <br/><a href="http://www.standardista.com">www.standardista.com</a></p>
+<p>Github: <br/><a href="http://github.com/estelle">github.com/estelle</a></p>
+</div>
+<ul class="flex books">
+	<li><img src="http://akamaicovers.oreilly.com/images/9780987467485/cat.gif" alt="HTML5 and CSS3 for the Real World"></li>
+  <li><img src="http://akamaicovers.oreilly.com/images/0636920041658/cat.gif" alt="Animations and Transitions with CSS"/>
+  </li>
+  <li><img src="http://akamaicovers.oreilly.com/images/0636920021711/cat.gif" alt="MObile HTML5" />
+  </li>
+  <li><img src="http://akamaicovers.oreilly.com/images/0636920025955/cat.gif" alt="Web Performance Daybook"/>
+  </li>
+  <li><img src="http://akamaicovers.oreilly.com/images/0636920012726/rc_cat.gif" alt="CSS: The Definitive Guide">
+  </li>
+  <li><img src="https://images-na.ssl-images-amazon.com/images/I/51kEaOLPoPL._SX379_BO1,204,203,200_.jpg" alt="Flexible boxes in CSS" width="180"></li></ul>
+</section>
+</div>
+ 
+
+
+<!-- Mobile Ecosystem -->
+<div class="slide divider">
+	<header>
+		<h1>Mobile Ecosystem</h1>
+	</header>
+	<section>
+
+	</section>
+</div>
+
+
+
+
+
+<!-- Top Devices: High End -->
+<div class="slide">
+	<header>
+		<h1>Top Devices of 2016</h1>
+	</header>
+	<section>
+	  <table class="topphones">
+		<tr>
+			<th>Phone</th>
+			<th>Cost</th>
+			<th>RAM</th>
+			<th>ROM</th>
+			<th>CPU</th>
+		</tr>
+		<tr>
+			<td>Samsung GALAXY S7</td>
+			<td>$670</td>
+			<td>4 GB</td>
+			<td>32 - 64 GB</td>
+			<td>1.6 GHz</td>
+		</tr>
+		<tr>
+			<td>Apple iPhone 6s</td>
+			<td>$600</td>
+			<td>1 GB</td>
+			<td>32 - 128 GB</td>
+			<td>1.8 GHz</td>
+		</tr>
+		<tr>
+			<td>LG G5</td>
+			<td>$550</td>
+			<td>4 GB</td>
+			<td>32 GB</td>
+			<td>2.5 GHz</td>
+		</tr>
+		<tr>
+			<td>Huawei Nexus 6P</td>
+			<td>$550</td>
+			<td>3 GB</td>
+			<td>32 - 128 GB</td>
+			<td>2.0 GHz</td>
+		</tr>
+		<tr>
+			<td>Samsung Galaxy Note 5</td>
+			<td>$700</td>
+			<td>4 GB</td>
+			<td>32 - 64 GB</td>
+			<td>2.1 GHz</td>
+		</tr>
+		<tr>
+			<td>Sony Xperia</td>
+			<td>$600</td>
+			<td>2 GB</td>
+			<td>16 GB</td>
+			<td>1.5 - 2.0 GHz</td>
+		</tr>
+		<tr>
+			<td>Samsung Galaxy S6</td>
+			<td>$785</td>
+			<td>3 GB</td>
+			<td>32 - 128 GB</td>
+			<td>2.1 GHz</td>
+		</tr>
+		<tr>
+			<td>LG Nexus 5X</td>
+			<td>$580</td>
+			<td>2 GB</td>
+			<td>32 GB</td>
+			<td>1.8 GHz</td>
+		</tr>
+		<tr>
+			<td>Moto X Pure Edition</td>
+			<td>$299</td>
+			<td>3 GB</td>
+			<td>16 - 64 GB</td>
+			<td>1.8 - 2.5 GHz</td>
+		</tr>
+		<tr>
+			<td>Xiaomi Redmi Note 3</td>
+			<td>$180</td>
+			<td>2 - 3 GB</td>
+			<td>16 - 32 GB</td>
+			<td>2X1.8 GHz</td>
+		</tr>
+		</table>
+	</section>
+</div>
+
+
+<!--  Wireless non-access world distribution -->
+<div class="slide fullimg phonedistribution">
+<header><h1>Emerging Markets</h1></header>
+</div>
+
+<!-- Map of SE Asia-->
+<div class="slide fullimg seasiacoverage">
+<header><h1>Wireless Coverage in Emerging Markets</h1></header>
+</div>
+
+
+
+<!-- -->
+<div class="slide">
+	<header>
+		<h1>Top Devices: Indonesia</h1>
+	</header>
+	<section>
+	
+	<table class="topphones">
+		<tr>
+			<th>Phone</th>
+			<th>Cost</th>
+			<th>RAM</th>
+			<th>ROM</th>
+			<th>CPU</th>
+		</tr>
+		<tr>
+			<td>Nokia Asha 200</td>
+			<td>$27</td>
+			<td>32 <b>M</b>B</td>
+			<td>10 - 64 <b>M</b>B</td>
+			<td>FF</td>
+		</tr>
+		<tr>
+			<td>Nokia Asha 210</td>
+			<td>$27</td>
+			<td>32 <b>M</b>B</td>
+			<td>64 <b>M</b>B</td>
+			<td>FF</td>
+		</tr>
+		<tr>
+			<td>Nokia X2-01</td>
+			<td>$9</td>
+			<td>64 <b>M</b>B</td>
+			<td>55 <b>M</b>B</td>
+			<td>FF</td>
+		</tr>
+		<tr>
+			<td>Nokia C3-00</td>
+			<td>$45</td>
+			<td>64 <b>M</b>B</td>
+			<td>55 <b>M</b>B</td>
+			<td>FF</td>
+		</tr>
+		<tr>
+			<td>TECNO P5</td>
+			<td>$42</td>
+			<td>512 <b>M</b>B</td>
+			<td>4 GB</td>
+			<td>1.0 GHz</td>
+		</tr>
+		<tr>
+			<td>Nokia Asha 205</td>
+			<td>$27</td>
+			<td></td>
+			<td>64 <b>M</b>B</td>
+			<td>FF</td>
+		</tr>
+		<tr>
+			<td>Nokia Asha 201</td>
+			<td></td>
+			<td>10 - 32 <b>M</b>B</td>
+			<td>64 <b>M</b>B</td>
+			<td>FF</td>
+		</tr>
+		<tr>
+			<td>TECNO M3</td>
+			<td>$41</td>
+			<td>512 <b>M</b>B</td>
+			<td>4 GB</td>
+			<td>1.0 GHz</td>
+		</tr>
+		<tr>
+			<td>Infinix Hot Note X551</td>
+			<td>$142</td>
+			<td>1 GB</td>
+			<td>16 GB</td>
+			<td>1.4 GHz</td>
+		</tr>
+		<tr>
+			<td>Infinix Hot 2 X510</td>
+			<td>$112</td>
+			<td>1 - 2 GB</td>
+			<td>16 GB</td>
+			<td>1.3 GHz</td>
+		</tr>
+		</table>
+		<p class="note">FF = Feature Phone
+		<br/>Java with WAP 2.0/xHTML. 
+		<br/>Opera/UC Browser</p>
+	</section>
+</div>
+
+
+
+<!-- -->
+<div class="slide">
+	<header>
+		<h1>Browser shares available memory</h1>
+	</header>
+	<section>
+	<table class="htc">
+    <thead><tr><td colspan="3">Running Services</td></tr></thead>
+    <tfoot><tr><td style="background-color:#FCC">Other</td><td colspan="2" style="background-color:#6C9">73MB Avail: 255MB + 182MB in 21</td></tr></tfoot>
+    <tbody>
+      <tr><td colspan="2">Calendar</td><td>8.4MB</td></tr>
+        <tr><td colspan="3">Process:com.htc.bgp</td></tr>
+      <tr><td rowspan="2"></td><td>ObexService</td><td>31:52:14</td></tr>
+        <tr><td colspan="2">Started by application: Touch to stop</td></tr>
+      <tr><td colspan="2">AT&amp;T Navigator</td><td>8.4MB</td></tr>
+        <tr><td colspan="3">Process: com.telnav.app.android.congular</td></tr>
+      <tr><td rowspan="2"></td><td>ResoucePreLoader</td><td>Restarting</td></tr>
+        <tr><td colspan="2">Started by application: Touch to stop</td></tr>
+		<tr><td colspan="2">AT&amp;T Spots</td><td>2.4MB</td></tr>
+        <tr><td colspan="3">Process: com.matchboxmobile.wasp</td></tr>
+      <tr><td rowspan="2"></td><td>WispService</td><td>31:52:14</td></tr>
+        <tr><td colspan="2">Started by application: Touch to stop</td></tr>
+      <tr><td colspan="2">Media</td><td>4.1MB</td></tr>
+        <tr><td colspan="3">Process: android.process.media</td></tr>
+      <tr><td rowspan="2"></td><td>DownloadService</td><td>31:52:14</td></tr>
+        <tr><td colspan="2">Started by application: Touch to stop</td></tr>
+      <tr><td colspan="2">PVWmdrmService</td><td>2.2MB</td></tr>
+        <tr><td colspan="3">Process: com.pv.wmdrmservice</td></tr>
+      <tr><td rowspan="2"></td><td>PVWmdrmService</td><td>31:52:14</td></tr>
+        <tr><td colspan="2">Started by application: Touch to stop</td></tr>
+    </tbody>
+    </table>
+	</section>
+</div>
+
+<!-- -->
+<div class="slide">
+	<header>
+		<h1>Android Device Fragmentation (2015)</h1>
+	</header>
+	<section>
+	<img src="img/devicefrag.svg" alt="distribution of devices by popularity, showing over 1000 devices" style="height: 80vh; margin-bottom: -50px"/>
+	<p>Via <a href="https://opensignal.com/reports/2015/08/android-fragmentation/">OpenSignal</a></p>
+	</section>
+</div>
+
+
+<!-- -->
+<div class="slide">
+	<header>
+		<h1>Device Sizes &amp; Aspect Ratios (2015)</h1>
+	</header>
+	<section>
+	<img src="img/devicesizes.svg" alt="distribution of devices by size, showing over 49mm x 57mm to 163mm x 302mm devices" style="height: 70vh; margin-bottom: -50"/>
+	<p>Via <a href="https://opensignal.com/reports/2015/08/android-fragmentation/">OpenSignal</a></p>
+	<p class="note">49mm x 57mm to 163mm x 302mm</p>
+	</section>
+</div>
+
+<!-- -->
+<div class="slide">
+	<header>
+		<h1>Device Features</h1>
+	</header>
+	<section><img src="img/devicefeatures.png" alt="RAM, GPU, Device size, and NFC support have been steadily increasing over the years." style="max-height: 80vh"/>
+	<p>Via <a href="https://opensignal.com/reports/2015/08/android-fragmentation/">OpenSignal</a></p>
+
+	</section>
+</div>
+
+
+<!-- Planes -->
+<div class="slide">
+	<header>
+		<h1>Dev Environments ≠ Mobile Experience
+		</h1>
+	</header>
+	<section>
+	<img src="img/plane.svg" alt="airplane" class="plane">
+	<img src="img/paperplane.svg" alt="paper plane" 
+		class="temphidden paperplane">
+	<img src="img/drone.svg" alt="drone" class="temphidden drone">
+
+
+
+	</section>
+</div>
+
+
+<div class="slide">
+ <header>
+  <h1>Battery</h1>
+ </header> 
+ <section style="background-image:url(img/carbattery.svg) , url(img/batter.svg); background-position: bottom left, 60% 90%; background-size: 50%, 10vw;height:600px; margin-top: -30px"> 
+ 
+ </section>
+</div>
+
+
+
+<!-- Overview of Performance -->
+<div class="slide divider">
+	<header>
+		<h1>Mobile Performance Concerns</h1>
+	</header>
+	<section>
+
+	</section>
+</div>
+
+
+
+
+<!-- Tweet: Your mobile site might suck -->
+<div class="slide tweet">
+<div class="fuckInlineStyles">
+  <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Just because no one uses your mobile site, doesn&#39;t mean you don&#39;t need to improve it. Maybe no one uses it because the experience is awful.</p>&mdash; Dawn Parzych (@dparzych) <a href="https://twitter.com/dparzych/status/710650338596884481">March 18, 2016</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+</div>
+
+
+	
+<div class="slide tweet">
+<div class="fuckInlineStyles">
+  <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">I remember when 3G was primary mobile speed. It was slow but still worked, so why now when my phone says 3G it becomes completely useless.</p>&mdash; Stephen Gundee (@StephenGundee) <a href="https://twitter.com/StephenGundee/status/712650972133138433">March 23, 2016</a></blockquote>
+  </div>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+
+
+<!-- HTTP Archive November  2010 -->
+<div class="slide"> 
+	<header>
+		<h1>November 2010</h1>
+	</header> 
+	<img  style="height: 80vmin; display: inline-block; margin: auto; max-width: none;" id="bytesperpage2" class="chart" src="http://chart.googleapis.com/chart?chs=700x394&amp;cht=p&amp;chco=226daa&amp;chd=t:416,34,25,113,2,22&amp;chds=0,416&amp;chdlp=b&amp;chdl=total 702 kB&amp;chl=Images+-+416+kB%7CHTML+-+34+kB%7CStylesheets+-+25+kB%7CScripts+-+113+kB%7CFonts+-+2+kB%7COther+-+22+kB&amp;chma=|5&amp;chtt=Average+Bytes+per+Page+by+Content+Type+November+2010" alt='In 2010, content was Images=416kb, HTML=34kb, Stylesheets=25kb, Scripts=113kb, Fonts=2kb, and Other=22kb for a total of 702kb'>
+</div> 
+
+<!-- HTTP Archive July 1, 2017 -->
+<div class="slide"> 
+	<header>
+		<h1>July 1, 2017</h1>
+	</header> 
+	<img style="height: 80vmin; max-width: none; display: inline-block; margin: auto;" id="bytesperpage" class="chart" src="http://chart.googleapis.com/chart?chs=700x394&amp;cht=p&amp;chco=226daa&amp;is3D=true&amp;chd=t:1714,26,60,347,97,729,14&amp;chds=0,1683&amp;chdlp=b&amp;chdl=total 3034 kB&amp;chl=Images+-+1714+kB%7CHTML+-+25+kB%7CStylesheets+-+60+kB%7CScripts+-+347+kB%7CFonts+-+97+kB%7CVideo+-+729+kB%7COther+-+14+kB&amp;chma=|5&amp;chtt=Average+Bytes+per+Page+by+Content+Type+July+1,+2017"
+	alt='In July 2017, content is Images=1714kb, HTML=25kb, Stylesheets=60kb, Scripts=347kb, Fonts=97kb, Video=329 and Other=14kb for a total of 3034 kb'>
+</div>
+
+
+<div class="slide"> 
+	<header><h1>2017 v 2010</h1></header> 
+	<section class="overlapping_pies">
+		<div class="big_piechart"  style="
+			    background-image: url(http://chart.googleapis.com/chart?chs=700x394&amp;cht=p&amp;chco=226daa&amp;is3D=true&amp;chd=t:1714,26,60,347,97,729,14&amp;chds=0,1714&amp;chdlp=b&amp;chma=|5);">
+			<div class="small_piechart"  style="
+			    background-image: url(http://chart.googleapis.com/chart?chs=324x182&amp;cht=p&amp;chco=333333&amp;chd=t:416,34,25,113,2,22&amp;chbg=transparent&amp;chds=0,416&amp;chdlp=b&amp;chma=|5);"></div>
+			<span  aria-label="for a total increase of 366% over a little over 6 years">432%</span>
+		</div>
+	</section>
+</div>
+
+
+<div class="slide object">
+  <object style="background: url(img/feathers.png) top center no-repeat white" data="http://blog.chriszacharias.com/page-weight-matters">
+  	<a href="http://blog.chriszacharias.com/page-weight-matters" target="play"><img src="img/feathers.png" alt="screenshot of Chris Zacharias's blog post from December 2012, 
+Page Weight Matters"></a>
+  </object>
+  <a href="http://blog.chriszacharias.com/page-weight-matters" target="play" class="objectlink">Open in separate window</a>
+  <p class="wholepoint">
+    Youtube Feathers:<br>Regular:  &nbsp;58 requests/1200 kB<br>Feathers: 14 requests/100 kB</p>
+</div>
+
+
+
+<!-- what really makes up performance -->
+<div class="slide">
+	<header>
+		<h1>Web Performance</h1>
+	</header>
+	<section>
+	<dl>
+	<dt>Download</dt>
+	<dd class="temphidden"># of resources: images, fonts, HTML, scripts, and CSS loaded</dd>
+	<dt class="temphidden">Parse</dt>
+	<dd class="temphidden">File size of above resources</dd>
+	<dt class="temphidden">Execute</dt>
+	<dd class="temphidden">Parsing &amp; Painting</dd>
+	<dt class="temphidden">Perceived Performance</dt>
+	<dd class="temphidden">User perception of load speed and reaction time.(<a href="http://speedperception.com">study</a>)<br/></dd> 
+	</dl>
+	<div>
+</div>
+	</section>
+</div>
+
+
+
+
+
+
+
+<!-- Four points with Cans -->
+<div class="slide" style="background-image: url(img/telephonecans.jpg); background-position: bottom 100px right; background-repeat: no-repeat;">
+	<header>
+		<h1>Device Considerations - Phones aren't Laptops</h1>
+	</header>
+	<section class="flex">
+     <ul style="margin-right: 6vw">
+     	<li>Very powerful browsers</li>
+      	<li>Less powerful CPUs</li>
+      	<li>Not plugged In</li>
+      	<li>Metered data</li>
+      	<li>Tiny Screens</li>
+      	<li>Different Interactions<br/> (Touch / Keyboard / Mouse)</li>
+      </ul>
+      <ul>
+        <li>Battery</li>
+      	<li>Latency</li>
+        <li>Memory</li>
+        <li>Responsiveness</li>
+      </ul>
+     </section>
+</div>
+<!-- -->
+<div class="slide divider">
+	<header>
+		<h1>Issues and Solutions</h1>
+	</header>
+	<section>
+	</section>
+</div>
+
+
+<!-- -->
+<div class="slide">
+<article class="flex" style="justify-content: center">
+<div>
+	<header>
+		<h1>Knowns</h1>
+	</header>
+	<section>
+<ul>
+	<li># of HTTP Requests</li>
+	<li># of Bytes</li>
+	<li>Images, Animations, Interactions</li>
+	<li>Squishiness</li>
+	<li>Responsiveness</li>
+	</ul>
+</section>
+</div>
+
+<div>
+	<header>
+		<h1>Unknowns</h1>
+	</header>
+	<section>
+		<ul>
+			<li>Network (latency, bandwidth)</li>
+			<li>Hardware (processing power)</li>
+			<li>Browser (blocking, features)</li>
+		</ul>
+	</section>
+</div>
+</article>
+	<p class="note">While we control how we build the site, we don't have control over ...</p>
+	
+</div>
+
+
+<!-- -->
+<div class="slide">
+	<header>
+		<h1>Latency</h1>
+	</header>
+	<section><img src="img/simpledns.gif" alt="whether tethered or on work wifi, when you need to make a DNS request, it's a simple request from browser to DNS server, back to browser, to the host computer"/>
+	</section>
+</div>
+
+
+<!-- -->
+<div class="slide">
+	<header>
+		<h1>Latency</h1>
+	</header>
+	<section><img src="img/latency.gif" alt="On mobile, the request goes from your device to the tower, to the phone company to the dns server, back to the phone company, back to the tower then to your phone. A second round trip is then needed to get the actual content">
+	</section>
+</div>
+
+
+
+<!-- 
+<div class="slide">
+	<header>
+		<h1>Minimize Requests</h1>
+	</header>
+	<section>
+	<img src="img/wired_latency_ttfb.png" alt="Screenshot of WebPageTest waterfall chart showing light colors in a load reflect time to first byte" style="max-width: 78vw; margin-top: -30px;"/>
+	<p class="note">TTFB = Latency + Server Time<br>Limit # of handshakes &amp; bandwidth req </p>
+	</section>
+</div>-->
+
+
+<div class="slide">
+	<header>
+		<h1>What's involved in a page load?</h1>
+	</header>
+	<section>
+<ul class="flex arrow">
+	<li>HTTP request</li>
+	<li>DNS lookup</li>
+	<li>TCP Connect</li>
+	<li>HTTP request sent</li>
+	<li>Server Magic</li>
+	<li>Server Sends response</li>
+	<li>Browser receives/<wbr>parses response</li>
+	<li>Resources fetched from Cache</li>
+	<li>Parse &amp; Execute Scripts</li>
+	<li>Render Site</li>
+</ul>
+<ul style="margin-top: 2em">
+	<li>Each request: go back to DNS lookup or HTTP Request</li>
+	<li>Stylesheets are blocking</li>
+	<li>Scripts are blocking.</li>
+</ul>
+</section>
+</div>
+
+<!-- What we can measure -->
+<div class="slide">
+	<header>
+		<h1>Navigation Timing API metrics</h1>
+	</header>
+	<section style="height: 80vh; overflow: scroll">
+	<img src="img/perfmetrics.svg" alt="Navigation Timing API metrics" style="width: calc((85vw + 85vh)/2); max-height: 100vh">
+	</section>
+</div>
+
+
+
+<!-- -->
+<div class="slide">
+	<header>
+		<h1>Latency<span class="note">"Last Mile"</span></h1>
+	</header>
+	<section>
+	<ul>
+	<li>CDN</li>
+	<li>Connection Setup
+		<ul>
+			<li>TCP Handshake</li>
+			<li>SSL/TLS Handshake</li>
+		</ul>
+	<li><a href="http://queue.acm.org/detail.cfm?id=3022184">BBR Congestion Control</a> <br/>
+	<a href="https://datatracker.ietf.org/doc/slides-89-nwcrg-6/">Dynamic Packet Recovery (DPR)</a></li>
+	</ul>
+	</section>
+</div>
+
+<!-- Wired Waterfall-->
+<div class="slide">
+	<header>
+		<h1>(Note the colors)</h1>
+	</header>
+	<section>
+	<img src="img/wired_latency_ttfb.png" alt="Screenshot of WebPageTest waterfall chart showing light colors in a load reflect time to first byte" style="max-width: 78vw; margin-top: -30px;"/>
+	<p class="note">TTFB = Latency + Server Time<br>Limit # of handshakes &amp; bandwidth req </p>
+	</section>
+</div>
+
+<div class="slide">
+	<header>
+		<h1>Better Performance</h1>
+	</header>
+	<section>
+	<img src="img/wpt_mlw.png" alt="Screenshot of WebPageTest waterfall chart showing light colors in a load reflect time to first byte" style="max-width: 78vw; margin-top: -10px;"/>
+	<p class="note">TTFB = Latency + Server Time<br>Limit # of handshakes &amp; bandwidth req </p>
+	</section>
+</div>
+
+
+<div class="slide">
+	<header>
+		<h1>RAIL</h1>
+	</header>
+	<section class="center">
+	<p>Four phases of interaction: end-user’s perception</p>
+	<article class="rail">
+	<ul>
+		<li class="l" style="width: 12vw"></li>
+		<li class="i" style="width: 6vw"></li>
+		<li class="a" style="width: 4vw"></li>
+		<li class="r" style="width: 10vw"></li>
+		<li class="l" style="width: 10vw"></li>
+		<li class="a" style="width: 4vw"></li>
+		<li class="r" style="width: 6vw"></li>
+		<li class="r" style="width: 6vw"></li>
+		<li class="a" style="width: 4vw"></li>
+	</ul>
+	<ol>
+		<li class="r">Response to Input <span class="icon">touch_app</span></li>
+		<li class="a">Animation &amp; Scrolling
+		<span class="icon">directions_run</span>
+		</li>
+		<li class="i">Idle <span class="icon">alarm</span></li>
+		<li class="l">Page Load <span class="icon">cached</span></li>
+	</ol>
+	</article>
+
+	<p class="right"><small>Video: <a href="https://www.youtube.com/watch?v=2ksXo2_Lfl0">How Users Perceive the Speed of The Web (2015): Paul Irish / Google</a></small></p>
+	</section>
+</div>
+
+<!-- -->
+<div class="slide">
+<article class="flex" style="justify-content: center">
+<div>
+	<header>
+		<h1>In Our Control</h1>
+	</header>
+	<section>
+<ul>
+	<li># of HTTP Requests</li>
+	<li># of Bytes</li>
+	<li>Images, Animations, Interactions</li>
+	<li>Squishiness</li>
+	<li>Responsiveness</li>
+	</ul>
+</section>
+</div>
+
+<div>
+	<header>
+		<h1>Out of Our Control</h1>
+	</header>
+	<section>
+		<ul>
+			<li>Network (latency, bandwidth)</li>
+			<li>Hardware (processing power)</li>
+			<li>Browser (blocking, features)</li>
+		</ul>
+	</section>
+</div>
+<i  class="bluearrow temphidden"></i>
+</article>
+	
+</div>
+
+
+<!-- -->
+<div class="slide">
+	<header>
+		<h1>Tools &amp; Rules</h1>
+	</header>
+	<section class="flex">
+	<ul>
+		<li>YSlow</li>
+		<li>PageSpeed</li>
+		<li>WebPageTest</li>
+		<li>Developer Tools</li>
+		<li>Lighthouse</li>
+	</ul>
+	<ul style="overflow-y: scroll; height: 80vh; margin-left: 6vw;">
+		<li>Minimize Requests</li>
+		<li>Reduce DNS lookups</li>
+		<li>Avoid Redirects</li>
+		<li>Cache Headers</li>
+		<li>Only load needed resources</li>
+		<li>Minimize size &amp; optimize media</li>
+		<li>Put CSS in the &lt;head></li>
+		<li>Put JS at the bottom</li>
+		<li>Don't scale images in HTML</li>
+		<li>Concatenate, Minify, Refactor</li>
+		<li>Don't block the UI thread</li>
+		<li>Use HTTP/2</li>
+		<li>Use a CDN</li>
+		<li>Use SSL</li>
+		<li>Use AMP</li>
+		<li>Offer Progressive Web Apps</li>
+		<li>Develop Mobile first</li> 
+		<li>Minimize the number of DOM nodes</li>
+		<li>Avoid reflows and repaints</li>
+		<li>Use the right input type</li>
+		<li>Configure the viewport</li>
+		<li>Make the site squishy</	li>
+		<li>Ensure legibility</li>
+		<li>Serve the right size images</li>
+		<li>Effective content strategy</li>
+		<li>Create a performance budget and stick to it</li>
+		<li>etc.</li>
+	</ul>
+	</section>
+</div>
+
+
+<div class="slide">
+	<header><h1>Lighthouse</h1></header>
+	<section>
+	<p><a href="https://developers.google.com/web/tools/lighthouse/">https://developers.google.com/web/tools/lighthouse/</a>
+		<ol>
+			<li>Progressive Web App (<a href="https://developers.google.com/web/progressive-web-apps/checklist">PWA checklist</a>)</li>
+			<li>Performance</li>
+			<li>Accessibility (<a href="https://developers.google.com/web/fundamentals/accessibility/">Google Intro</a>)</li>
+			<li>Best Practices</li>
+		</ol>
+
+	</section>
+</div>
+
+
+
+<div class="slide">
+<header><h1>PageSpeed</h1></header>
+<section>
+<dl class="hidden_dd">
+<dt>Minimize request size</dt>
+ <dd>GZip all requests. </dd>
+<dt>Leverage browser caching.</dt>
+ <dd>Include caching headers for all requests with a future date so previously fetched responses can be reused instead of refetched.</dd>
+<dt>Specify a cache validator</dt>
+ <dd>Specify a <code>Last-Modified</code> or ETag header to enable cache validation. ETags provide revalidation tokens automatically sent by client to check if there are file changes since last requested. </dd>
+<dt>Minify CSS, JS &amp; HTML</dt>
+ <dd>Removing unnecessary whitespace saves bandwidth</dd>
+<dt>Defer parsing of JavaScript</dt>
+ <dd>include <code>async</code> attribute in your <code>&lt;script&gt;</code> tags so client can continue downloading assets instead of waiting as scripts are downloaded, parsed and excecuted.</dd>
+<dt>Optimize images</dt>
+ <dd>Choose best format and compression on a per image basis include: type of data being encoded, image format capabilities, quality settings, resolution, and more. Leverage SVG and CSS. See previous page.</dd>
+<dt>Specify a character set</dt>
+ <dd>Including a content-type header, such as <code>Content-Type: text/html; charset=UTF-8</code> reduces browser processing. Can start parsing HTML immediately when it knows which character set it has.</dd>
+<dt>Remove query strings from static resources</dt>
+ <dd>Resources with a "?" in the URL are not cached by some proxy caching servers</dd>
+<dt>Specify a Vary: Accept-Encoding header</dt>
+ <dd>In case client doesn't support compression, tells proxy server to store both compressed and uncompressed versions.</dd>
+<dt>Avoid CSS @import</dt>
+ <dd>Only starts downing imported file once encountered rather than in parallel.</dd>
+<dt>Avoid a character set in the meta tag</dt>
+ <dd>Better to include it in HTTP Content-Type header (IE8 rule)</dd>
+<dt>Avoid bad requests</dt>
+ <dd>404 and 410 errors waste time. If requests are for blocking resources, it becomes a more serious problem.</dd>
+<dt>Avoid landing page redirects</dt>
+ <dd>If your site requires redirects, do them server-side not client side, to reduce round trip requests. Removing HTTP redirects removes extra round trips.</dd>
+<dt>Combine images into CSS sprites</dt>
+ <dd></dd>
+<dt>Enable Keep-Alive</dt>
+ <dd>HTTP persistent connections allows a TCP connection to send and receive multiple HTTP requests, reducing latency for subsequent requests.</dd>
+<dt>Enable compression</dt>
+ <dd>GZip!</dd>
+<dt>Inline Small CSS &amp; JS</dt>
+ <dd></dd>
+<dt>Minimize redirects</dt>
+ <dd>Minimizing redirects removes additional RTTs and wait time for users.</dd>
+<dt>Optimize the order of styles and scripts</dt>
+ <dd></dd>
+<dt>Prefer asynchronous resources</dt>
+ <dd>Many JS libraries and frameworks were originally written as synchronous scripts, but now have asynchronous versions. Use the asynchronous versions. </dd>
+<dt>Put CSS in the document head</dt>
+ <dd></dd>
+<dt>Serve resources from a consistent URL</dt>
+ <dd></dd>
+<dt>Serve scaled images</dt>
+ <dd>Properly sized images saves bandwidth.</dd>
+<dt>Specify image dimensions</dt>
+ <dd>Enables rendering page before images are downloaded. Without proper dimensions, browser will need to reflow and repaint upon image downloaded.</dd>
+</dl>
+<a class="pagelink" href="https://developers.google.com/speed/docs/insights/about#send-us-your-feedback">Page Speed</a>
+</section>
+</div>
+
+
+<div class="slide"> 
+<header><h1>Usability Rules</h1></header> 
+<section> 
+<dl class="hidden_dd">
+<dt>Avoid plugins</dt>
+ 
+<dt>Configure the viewport</dt>
+ <dd>Optimize pages to display well on mobile devices by including a meta viewport in the head of the document specifying <code>width=device-width, initial-scale=1</code>.
+
+<pre>&lt;meta name=viewport content="width=device-width, initial-scale=1"&gt;</pre></dd>
+<dt>Size content to viewport</dt>
+ <dd>Scrolling websites vertically is Okay, but horizontally creates poor user experience. Use media queries and <code>vh</code>, <code>vw</code> and percents for width.
+
+</dd>
+<dt>Size tap targets appropriately</dt>
+ <dd>Set a minimum tap target size of  of 48 CSS pixels on a site with a properly-set mobile viewport. Make important tap targets large enough to be easy to press, ensuring there is extra spacing between smaller tap targets.</dd>
+<dt>Use legible font sizes</dt>
+
+ </dl>
+ <a class="pagelink" href="https://developers.google.com/speed/docs/insights/rules">Page Speed Insights</a>
+ </section>
+</div>
+
+
+<div class="slide"> 
+<header><h1>Image Optimization</h1></header> 
+<section> 
+<dl class="hidden_dd">
+<dt>GZip</dt>
+<dt>Remove Image Metadata</dt>
+
+<dt>Resize Images</dt>
+
+<dt>Optimize Images</dt>
+
+<dt>Use the Right Image Format</dt>
+
+<dt>Reduce the Number of Images</dt>
+
+</dl>
+<p>
+My <a href="https://www.instartlogic.com/blog/image-optimization-tips-for-improved-web-performance">Tips</a> &amp; <a href="https://calendar.perfplanet.com/2016/image-optimization/">Deep Dive</a></p>
+
+<p><strong>Note:</strong> Include an <em>alt</em> attribute on all  foreground images, with empty <a href="http://webaim.org/techniques/alttext/"><em>alt</em> attribute</a> for decorative images.</p>
+</section>
+</div>
+
+
+
+
+<!-- -->
+<div class="slide">
+  <header><h1>#1: Configure the Viewport</h1></header>
+    <section><pre>&lt;meta name="viewport"
+   content="width=device-width, ..."&gt;</pre>
+<table class="data">
+<tr><td>width</td><td>	width of device's virtual viewport.</td></tr>
+<tr><td>device-width</td><td>width of the device's screen.</td></tr>
+<tr><td>
+height</td><td>	height of device's virtual viewport</td></tr>
+<tr><td>device-height</td><td>	height of the device's screen.
+</td></tr>
+<tr><td>initial-scale</td><td>	Initial zoom on page visit. default 1.0.</td></tr>
+<tr><td>minimum-scale</td><td>	If user scalable, as small as it can zoom on the page.</td></tr>
+<tr><td>maximum-scale</td><td>	If user scalable, maximum amount visitor can zoom on the page.</td></tr>
+<tr><td>user-scalable</td><td>Can the web zoom in and out. Values are yes or no.</td></tr>
+</table>
+<!--
+     <pre>@viewport { viewport-properties }</pre>
+<small>
+     Resource: <a href="http://www.quirksmode.org/mobile/viewports2.html" target="_blank">A tale of 2 viewports</a><br>
+      Tutorial: <a href="http://estelle.github.io/CSS-Workshop/part_04_media.html" target="_blank">Media Queries slide deck</a></small>-->
+    </section>
+</div>
+
+
+<!-- -->
+<div class="slide">
+	<header>
+		<h1>One line of code....</h1>
+	</header>
+	<section class="flex">
+	<div class="phonemask"><div class="contain"></div></div>
+	<div class="arrow"></div>
+	<div class="phonemask"><div></div></div>
+	</section>
+</div>
+
+<div class="slide">
+<header><h1>Don't be a jerk like GMail</h1></header>
+<pre>&lt;meta name="viewport" 
+  content="<span class="hoverhilite">initial-scale=1.0</span>, 
+           <span class="hoverhilite bad">maximum-scale=1.0, 
+           minimum-scale=1.0, 
+           user-scalable=no,</span> 
+           <span class="hoverhilite">width=device-width</span>"&gt;</pre>
+<img src="img/gmail.png" alt="Gmail doesn't allow resizing" style="margin: auto; display: block; width: 320px">
+</div>
+
+
+<!-- -->
+<div class="slide">
+	<header>
+		<h1>#2 Optimize all Images</h1>
+	</header>
+	<section>
+<ol>
+	<li>GZip</li>
+	<li>Remove Image Metadata</li>
+	<li>Resize Images</li>
+	<li>Optimize Images</li>
+	<li>Use the Right Image Format</li>
+	<li>Reduce the Number of Images</li>
+	<li>Leverage CSS</li>
+</ol>
+
+	</section>
+</div>
+
+
+
+<div class="slide lineone"> 
+<header><h1>#2 Optimize all Images</h1></header> 
+<section> 
+<ol>
+<li>GZip
+<p>Minify and GZip SVG and font files. In that order. See
+ <a href="http://calendar.perfplanet.com/2014/tips-for-optimising-svg-delivery-for-the-web/"> tips for optimising SVG delivery</a>. </p>
+</li>
+<li>Remove Image Metadata
+<p>Metadata adds bytes and can  be a security risk by exposing geographical data. You can <a href="https://itunes.apple.com/us/app/exifpurge/id784466108?mt=12">Strip EXIF metadata</a> from multiple images at a time.</p>
+</li>
+</ol>
+</section>
+</div>
+
+<div class="slide lineone"> 
+<header><h1>#2 Optimize all Images</h1></header> 
+<section> 
+<ol start="3">
+<li>Resize Images
+<p>Serve the smallest image file for the screen size and resolution. </p>
+	<ul>
+		<li>Serve scaled images. <br/><span class="lessimportant">Resizing images means <a href="http://blog.cloudfour.com/responsive-images-101-part-9-image-breakpoints/">downloading unneeded pixels</a> and take longer to decode and paint.</span></li>
+
+
+		<li> <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture">&lt;picture&gt;</a> element and <a href="http://www.sitepoint.com/how-to-build-responsive-images-with-srcset/">srcset</a> attribute</li>
+
+		<li>Old browsers? load small background images<span class="lessimportant"> in CSS Internet Explorer, consider using <a href="http://scottjehl.github.io/picturefill/">Picturefill</a> or JS-free <a href="https://www.smashingmagazine.com/2013/06/clown-car-technique-solving-for-adaptive-images-in-responsive-web-design/">Clown Car Technique</a>.</span></li>
+		</ul>
+	</li>
+</ol>
+</section>
+</div>
+
+
+
+
+
+
+
+
+<!-- useless bytes -->
+<div class="slide">
+<header>
+	<h1>Right Size Your Images: Unneeded pixels</h1>
+</header>
+
+<ul class="cloudfour flex">
+<li><pre style="margin:0 -40px 0 -60px;">240 x 240 = 57,600
+200 x 200 = 40,000
+            17,600</pre>
+<img src="img/small.png" width="100"></li>
+<li><pre style="margin: 0 -30px;">440 x 440 = 193,600
+400 x 400 = 160,000
+             33,600</pre><img src="img/medium.png" width="200"></li>
+<li><pre>640 x 640 = 409,600
+600 x 600 = 360,000
+             49,000</pre><img src="img/big.png" width="300"></li>
+<li><pre>840 x 840 = 705,600
+800 x 800 = 640,000
+             65,600</pre><img src="img/huge.png" width="400"></li>
+</ul>
+<p><a href="http://blog.cloudfour.com/responsive-images-101-part-9-image-breakpoints/" class="objectlink">CloudFour: image breakpoints</a>
+</p></div>
+
+
+<div class="slide">
+   <header><h1>Scaling can be slow....</h1></header>
+     <section class="content">
+
+      <p>Scaled: 1,850 milliseconds</p>
+      <img src="img/bad-trimmed-2_resize_image.png">
+
+      <p>Right-sized: 625 milliseconds</p>
+      <img src="img/good-trimmed-2_resize_image.png">
+<small>blue = CPU used to decode<br/>
+green = FPS (more is better)<br/>
+purple = rendering</small>
+  <a class="objectlink" href="http://physicsoffast.io/demos/">PhysicsOfFast</a>
+    <footer><a href="https://twitter.com/tobint">Tobin Titus, Microsoft</a></footer> </section>
+ </div>
+
+
+
+
+
+<!-- <PICTURE> ELEMENT -->
+<div class="slide">
+<header><h1>#2, sect. 3, part B<br/><code>&lt;picture&gt;, &lt;source&gt; &amp; srcset</code></h1></header>
+<pre>&lt;picture&gt;
+  &lt;source srcset="large.jpg" 
+          media="(min-width: 1000px)"&gt;
+  &lt;source srcset="small.jpg" 
+          media="(min-width: 500px)"&gt;
+  &lt;img src="default.jpg"
+       srcset="highresolution.jpg 2x" 
+       alt="do not forget the alt"&gt;
+&lt;/picture&gt;</pre>
+
+</div>
+
+
+<!-- -->
+<div class="slide lineone">
+	<header>
+		<h1>#2 Optimize all Images</h1>
+	</header>
+	<section>
+<ol start="4">
+<li>Optimize Images
+<ul>
+	<li>Compressed without noticeably degrading  quality. </li>
+	<li>Image compression: <a href="https://imageoptim.com/">ImageOptim</a>, <a href="https://pngmini.com/">ImageAlpha</a>, <a href="https://tinypng.com/">TinyPNG</a>, PhotoShop, etc.</li>
+	<li>JPEG Image compression automation? (see <a href="https://www.instartlogic.com/blog/playing-smartvision-intelligent-image-optimization">SmartVision</a>).</li>
+</li>
+</ol>
+</section>
+</div>
+
+<!-- -->
+<div class="slide  lineone">
+	<header>
+		<h1>#2 Optimize all Images</h1>
+	</header>
+	<section>
+<ol start="5">
+<li>
+Use the Right Image Format
+<p>Image types include SVG, GIF, JPEG, PNG, and WebP. </p>
+<ul>
+<li>GIF: <= 256 color pallette, need transparency and/prlow quality animation</li>
+<li>SVG: scalable, animatable, unlimited color pallette</li>
+<li>PNG: > 256 colors if transparency needed.</li>
+<li>JPEG: raster images</li>
+<li> WebP:  Animation, transparency, great resolution, small file size. <a href="https://developers.google.com/speed/webp/faq#which_web_browsers_natively_support_webp">Blink only.</a></li>
+<li>JPEG-XR: For Edge</li>
+</ul>
+</li>
+</ol>
+</section>
+</div>
+
+
+
+<div class="slide  lineone">
+	<header>
+		<h1>Smallest file size</h1>
+	</header>
+	<section>
+
+<table class="data">
+<tbody>
+<tr>
+<th>
+<p><strong>Browser</strong></p>
+</th>
+<th>
+<p><strong>Optimal image format</strong></p>
+</th>
+</tr>
+<tr>
+<td>
+<p>Chrome</p>
+</td>
+<td>
+<p>WebP</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>IE 9+ / Edge &nbsp;</p>
+</td>
+<td>
+<p>JPEG-XR</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Opera</p>
+</td>
+<td>
+<p>WebP</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Safari</p>
+</td>
+<td>
+<p>JPEG-2000</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="note">You don't have to change the file extension.</p>
+</section></div>
+
+
+<!-- -->
+<div class="slide  lineone">
+	<section style="margin-top:-5px">
+<ol start="6">
+<li>Reduce the Number of Images
+<ul><li>
+Sprites</li>
+<li>Just fewer images</li>
+</ul></li>
+<li>Leverage CSS
+<ul><li><strong>Image Masking.</strong> (<a href="http://wegraphics.net/blog/articles/png-masking-how-to-dynamically-shape-any-image-on-your-website/">article</a>)</li>
+	<li><strong>CSS Effects:</strong> gradients, borders, rounded corners, shadows, etc. </li>
+	<li><strong>Sprites:</strong> especially without HTTP/2</li>
+	
+	<li><strong>CSS Filters</strong> </li>
+	<li><strong>Media Queries</strong> serve hi-res images to hi-res devices</li>
+	<li><strong>Animation:</strong>  <a href="http://codepen.io/estelle/pen/LyItm">steps()</a> as alternative to animated gifs.</li>
+	<li>Leave out prefixed property/values</li>
+	</ul>
+</li>
+</ol>
+</section>
+</div>
+	
+
+
+<div class="slide object">
+  <object data="mask/index.html">
+  	<a href="mask/index.html" target="_blank">Ooops, didn't load</a>
+  </object>
+  <a href="mask/index.html" target="play" class="objectlink">Open in separate window</a>
+</div>
+
+
+<!-- -->
+<div class="slide">
+	<header>
+		<h1>#3: Optimize Video</h1>
+	</header>
+	<section>
+		
+		<div style="display:flex">
+		<ol>
+			<li>Omit videos</li>
+			<li>Compression</li>
+			<li>Optimize source order</li>
+			<li>Remove muted audio</li>
+		</ol>
+			<div>
+		<h3>July 1, 2017</h3>
+	<img style="height: 40vmin; max-width: none; display: inline-block; margin: auto;" id="bytesperpage" class="chart" src="http://chart.googleapis.com/chart?chs=700x394&amp;cht=p&amp;chco=226daa&amp;is3D=true&amp;chd=t:1714,26,60,347,97,729,14&amp;chds=0,1683&amp;chdlp=b&amp;chdl=total 3034 kB&amp;chl=Images+-+1714+kB%7CHTML+-+25+kB%7CStylesheets+-+60+kB%7CScripts+-+347+kB%7CFonts+-+97+kB%7CVideo+-+729+kB%7COther+-+14+kB&amp;chma=|5&amp;chtt=Average+Bytes+per+Page+by+Content+Type+July+1,+2017"
+	alt='In July 2017, content is Images=1714kb, HTML=25kb, Stylesheets=60kb, Scripts=347kb, Fonts=97kb, Video=329 and Other=14kb for a total of 3034 kb'></div>
+			<div>
+				<h3>July 1, 2015</h3>
+	<img style="height: 40vmin; max-width: none; display: inline-block; margin: auto;" id="bytesperpage" class="chart" src="http://chart.googleapis.com/chart?chs=700x394&amp;cht=p&amp;chco=22aa6d&amp;is3D=true&amp;chd=t:1348,55,68,344,102,204,4&amp;chds=0,1348&amp;chdlp=b&amp;chdl=total 2135 kB&amp;chl=Images+-+1348+kB%7CHTML+-+55+kB%7CStylesheets+-+68+kB%7CScripts+-+344+kB%7CFonts+-+102+kB%7CVideo+-+204+kB%7COther+-+4+kB&amp;chma=|5&amp;chtt=Average+Bytes+per+Page+by+Content+Type+July+1,+2015"
+	alt='In July 2015, content is Images=1348kb, HTML=55kb, Stylesheets=68kb, Scripts=344kb, Fonts=102kb, Video=204 and Other=4kb for a total of 2135 kb'>
+
+			</div>
+		</div>
+	</section>
+</div>
+
+
+
+<div class="slide">
+	<header>
+		<h1>#3.1 Omit the video</h1>
+	</header>
+	<section>
+	<pre>&lt;video .... id="hero-video"></pre>
+<p>Do you really need a hero video? On a mobile device?</p>
+<pre>@media screen and (max-width: 650px) {
+  #hero-video {
+    display: none;
+  }
+}</pre>
+</section>
+</div>
+
+
+<!-- -->
+<div class="slide">
+	<header>
+		<h1>#3.3: Optimize Source order</h1>
+	</header>
+	<section>
+	<p>Order from smallest to largest*</p>
+<pre>&lt;video width="400" height="300" controls="controls">
+  <span style="opacity: 0.5">&lt;!-- WebM: 10 MB --></span>
+  &lt;source src="video.webm" type="video/webm" />
+  <span style="opacity: 0.5">&lt;!-- MPEG-4/H.264: 12 MB --></span>
+  &lt;source src="video.mp4" type="video/mp4" />
+  <span style="opacity: 0.5">&lt;!-- Ogg/Theora: 13 MB --></span>
+  &lt;source src="video.ogv" type="video/ogv" />
+&lt;/video></pre>
+<small>* check for quality consistency</small>
+	</section>
+</div>
+
+
+<div class="slide">
+	<header>
+		<h1>#3.4 Remove audio that is muted</h1>
+	</header>
+	<section>
+	<pre>&lt;video autoplay="" loop="" muted="true" id="hero-video">
+  &lt;source src="web_banner.webm" 
+          type='video/webm; codecs="vp8, vorbis"'>
+  &lt;source src="web_banner.mp4" type="video/mp4">
+&lt;/video></pre>
+<pre><a href="https://www.ffmpeg.org/" target="play">ffmpeg</a> -i original.mp4 -an -c:v copy audiofree.mp4</pre>
+<ul>
+<li><code>-an</code>: Disable audio recording in output.</li></ul>
+</section>
+</div>
+        
+
+<!-- -->
+<div class="slide">
+	<header>
+		<h1>#4: Everything Else</h1>
+	</header>
+	<section>
+	</section>
+</div>
+
+<div class="slide">
+<header><h1>Code Order</h1></header>
+<section>
+<pre contenteditable="" style="font-size: 1.2rem;">&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+ &lt;head&gt;
+   &lt;meta charset="UTF-8"&gt;
+   &lt;title&gt;Titles are good for SEO&lt;/title&gt;
+   &lt;link <strong>rel="stylesheet"</strong> href="prettyWhenItLoads.css"/&gt;
+ &lt;/head&gt;
+ &lt;body&gt;
+   &lt;!-- lots of good content --&gt;
+   &lt;<strong>script</strong> src="dontBlockHTMLandCSS.js"&gt;&lt;/script&gt;
+ &lt;/body&gt;
+&lt;/html&gt;</pre>
+</section></div>
+
+
+
+
+
+<div class="slide">
+<header><h1>JavaScript</h1>
+     <section>
+<ul style="max-height: 78vh; overflow-y: scroll">
+<li><em>Render cost:</em> JS (and CSS <strong title="can be as expensive to render as">and images</strong>)</li>
+<li>JS (download, parsing &amp; executing) </li>
+<li><em title="(like XMLHttpRequest)">Dynamic JS:</em> ⬆ rendering cost (can't be cached). </li>
+<li>AJAX: waking up the radio communications</li>
+<li>All scripts loaded and parsed (even if not used)</li>
+<li>Reduce JS to only what is needed</li>
+<li>Don't let 3rd party scripts be your SPOF </li>
+<li>Are libraries really necessary?
+<ul>
+  <li>Include only functions used by page to reduce
+
+energy use.</li>
+  <li>Goal of most libraries is equalize across browsers <br> (not necessry in mobile space)</li>
+<li>Libraries simplify web
+
+development, but increase energy use.</li>
+<li><a href="http://estelle.github.com/jsframeworks">You don't need a framework for that</a></li></ul></li>
+</ul>
+    </section>
+</div>
+
+
+
+
+
+
+<div style="background-image: url(img/batter.svg); background-position: 60% 10%; background-size: 10vw;"
+ class="slide">
+     <header>
+      <h1>Battery Consumption</h1>
+     </header> 
+     <section>
+     <div>
+     <p>CPU Drains the battery. Avoid using it!</p>
+     <ul>
+     	<li>Avoid Reflows &amp; Repaints</li>
+     	<li>Minimize JavaScript (size and activity)</li>
+     	<li>Avoid JavaScript Animations (<code>requestAnimationFrame()</code>)</li>
+        <li>Avoid WebGL (or otherwise warming up the phone)</li>
+        <li>Let the radio idle</li>
+        <li>Implement what you learn today</li>
+     </ul>
+     </div>
+     <p>Let your device take long, long breaks! </p>
+     </section>
+</div>
+
+
+
+
+<!-- -->
+<div class="slide">
+	<header>
+		<h1>JavaScript in Pink</h1>
+	</header>
+	<section>
+	<img src="img/wired_latency_ttfb.png" alt="Screenshot of WebPageTest waterfall chart showing light colors in a load reflect time to first byte" style="max-width: 78vw; margin-top: -30px;"/>
+	</section>
+</div>
+
+<!-- -->
+<div class="slide">
+	<header>
+		<h1>The effect of <acronym title="resume driven development">RDD</acronym>...</h1>
+	</header>
+	<section>
+	<img src="img/wpt_visa.png" alt="Screenshot of WebPageTest waterfall showing a 2 second DOM content loaded event" style="max-width: 78vw;"/>
+	</section>
+</div>
+
+
+<div class="slide" style="background-image: url(img/tetris.svg); background-position: top right; background-size: 28%">
+    <header>
+      <h1>Minimize the DOM</h1>
+    </header>
+    <section>
+        <ul class="large">
+            <li>Minimize number of nodes
+              <ul class="small">
+                  <li>Uses up memory &amp; time</li>
+                    <li>Measures each node for each repaint</li>
+                </ul></li>
+            <li>Cache DOM lookups
+            <ul class="small">
+                  <li>Store them!</li>
+                </ul>
+            </li>
+            <li>Minimize DOM manipulations
+              <ul class="small">
+                  <li>Batch DOM queries &amp; DOM manipulations separately </li>
+                </ul>
+            </li>
+        </ul>
+         <p class="notes" style="margin-top:50px">More nodes = more expensive! </p>
+
+    </section>
+  </div>
+
+
+<div class="slide">
+  <header><h1>Squishy ≠ Responsive</h1></header>
+    <section class="content">
+    <h1>Disney Went "Mobile"</h1>
+      <table class="data">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Wide / Desktop</th>
+            <th>Narrow / Mobile</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Requests</td>
+            <td>77</td>
+            <td>123</td>
+          </tr>
+          <tr>
+            <td>Assets</td>
+            <td>3752kB</td>
+            <td>3344kB</td>
+          </tr>
+
+          <tr>
+            <td>Load</td>
+            <td>10.62s</td>
+            <td>34.10s</td>
+          </tr>
+
+          <tr>
+            <td>DOMContentLoaded</td>
+            <td>&nbsp;9.74s</td>
+            <td>30.94s</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><a href="http://httparchive.org/viewsite.php?u=http%3A%2F%2Fwww.disney.com%2F" target="_play">desktop stats</a></td>
+            <td><a href="http://mobile.httparchive.org/viewsite.php?pageid=335728" target="_play">mobile stats</a></td>
+        </tr></tbody>
+      </table>
+    </section>
+</div>
+
+
+
+<!-- -->
+<div class="slide">
+	<header>
+		<h1>HTTPS</h1>
+	</header>
+	<section>
+	</section>
+</div>
+
+
+
+<!-- -->
+<div class="slide">
+	<header>
+		<h1>Progressive Web Apps</h1>
+	</header>
+	<section><img style="float: right; width: 240px	;" src="img/flipkart.png" alt="screenshot of Flipkart in offline mode"><img style="float: right; width: 240px; margin-right: 3px;" src="img/flipkart_splash.png" alt="screenshot of Flipkart in offline mode">
+<ul>
+<li>Works offline, online &amp; on Lie-Fi</li>
+<li>App like
+	<ul>
+		<li>Installable: add to home screen</li>
+		<li>Splash Page: add to home screen</li>
+	</ul>
+</li>
+<li>Secure:  HTTPS </li>
+<li>Manifest</li>
+<li>Service Workers</li>
+<li>Responsive</li>
+<li>Progressively Enhanced</li>
+</ul>
+	</section>
+</div>
+
+<!-- AMP-->
+<div class="slide">
+	<header>
+		<h1>AMP: Accelerated Mobile Pages</h1>
+	</header>
+	<section><img src="img/amp.jpg" alt="AMP">
+	</section>
+</div>
+
+<div class="slide tweet">
+<div class="fuckInlineStyles">
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">So, here&#39;s the deal:<br>Browsers made a decision to refuse to enable any new advanced speed features, moving forward, for unencrypted websites.</p>&mdash; failed meme (@SwiftOnSecurity) <a href="https://twitter.com/SwiftOnSecurity/status/846932219193163778">March 29, 2017</a></blockquote></div>	
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+
+
+
+
+<!-- -->
+<div class="slide">
+	<header>
+		<h1>Build with Accessibility in Mind</h1>
+	</header>
+	<section>
+	</section>
+</div>
+
+<!-- -->
+<div class="slide">
+	<header>
+		<h1>Build with Mobile in mind</h1>
+	</header>
+	<section>
+	</section>
+</div>
+
+
+<!-- Testing -->
+<div class="slide normal">
+    <header>
+    	<h1>Test in Real Environments</h1>
+    </header> 
+    <section> 
+    <img src="img/closeapps.png" style="margin-right: 20px; width: 20vw; float:right;" alt="Phone showing which apps are running in the background"/>
+        <ul>
+          <li>Test on Phone: 
+          		<ul>
+                    <li>Simulator != Emulator</li>
+                    <li>Cap your memory</li>
+                </ul>
+                </li>
+          <li>Test with many apps open</li>
+          <li>Test on multiple devices</li>
+          <li>Test on mobile network</li>
+        </ul>
+        <p>Test during development</p>
+        <p>Set a budget before you start</p>
+      </section>
+</div>      
+    
+  
+   
+<!-- Tricks -->
+<div class="slide normal" style="background-image:url(img/nerdGirl.jpg); background-position: 5% bottom;">
+<header>
+<h1>Tricks</h1>
+</header> 
+<section> 
+  <ul class="sevenless">
+    <li>Scale down (not up)</li>
+    <li>Don't use prefixed property fallbacks</li>
+    <li>Take advantage of HTML5 &amp; native storage</li>
+    <li>Don't disable zoom (except for games)</li>
+  </ul>
+  
+  <footer>Credit: <a href="http://nerdquirks.tumblr.com/">NerdQuirks</a></footer>
+</section>
+</div>  
+    
+<!-- Take Aways -->
+<div class="slide">
+     <header>
+      <h1>Conclusion</h1>
+     </header> 
+     <section> 
+       <ul>
+         <li>Follow performance recommendations</li>
+         <li>Minimize Latency</li>
+         <li>Manage memory</li>
+         <li>Use CSS Judiciously</li>
+         <li>Use JS Minimally (and NOT for animation)</li>
+        <li>Batch query and manipulations separately</li>
+        <li>Reuse the DOM</li>
+         <li class="important">Keep Mobile in Mind</li>
+       </ul>
+     </section>
+    </div>
+   
+   
+<!-- It's a phone -->
+<div class="slide normal">
+     <header>
+      <h1>Remember...</h1>
+     </header> 
+      
+       <section>
+          <h1 class="conclude">Your users may <br/>not be <strong>tethered</strong>,<br/> their <strong>memory</strong> may be <strong>limited</strong>,<br/> and their <strong>bandwidth</strong> may be<br/> <strong>unreliable</strong> and <strong>metered</strong>.</h1>
+	   </section>
+    </div> 
+    
+      
+
+<!-- ESTELLE WEYL -->
+<div class="slide">
+<section>
+<div class="flex">
+<div>
+<h1>Questions</h1>
+
+<p><br/>
+<a href="http://instartlogic.github.io/p/mobileperf">instartlogic.github.io/p/mobileperf</a>
+</p>
+<p>
+Twitter: <br/><a href="http://www.twitter.com/webdevtips">@webdevtips</a> <br/> <a href="http://www.twitter.com/estellevw">@estellevw</a> <br/> <a href="http://www.twitter.com/standardista">@standardista</a></p><p>Blog: <br/><a href="http://www.standardista.com">www.standardista.com</a></p><p>Github: <br/><a href="http://github.com/estelle">github.com/estelle</a></p>
+</div>
+<ul class="flex books">
+	<li><img src="http://akamaicovers.oreilly.com/images/9780987467485/cat.gif" alt="HTML5 and CSS3 for the Real World"></li>
+  <li><img src="http://akamaicovers.oreilly.com/images/0636920041658/cat.gif" alt="Animations and Transitions with CSS"/>
+  </li>
+  <li><img src="http://akamaicovers.oreilly.com/images/0636920021711/cat.gif" alt="MObile HTML5" />
+  </li>
+  <li><img src="http://akamaicovers.oreilly.com/images/0636920025955/cat.gif" alt="Web Performance Daybook"/>
+  </li>
+  <li><img src="http://akamaicovers.oreilly.com/images/0636920012726/rc_cat.gif" alt="CSS: The Definitive Guide">
+  </li>
+  <li><img src="https://images-na.ssl-images-amazon.com/images/I/51kEaOLPoPL._SX379_BO1,204,203,200_.jpg" alt="Flexible boxes in CSS" width="180"></li></ul>
+</section>
+</div>
+ 
+
+<div class="slide">
+<header><h1>Also....</h1></header>
+<section>
+<ul>
+<li><a href="http://speedperception.com">SpeedPerception.com</a></li>
+<li><a href="http://www.MachineLearningWorkshop.com">MachineLearningWorkshop.com</a></li>
+</section>
+</div>
+
+
+   </div>
+</div>
+<script src="js/slides.js" class="removeForAT"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-30010510-4', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+
+
+@media print {
+  html {
+    font-size: 16px;
+  }
+  .slide {
+    page-break-inside: avoid;
+    page-break-after: always;
+    visibility: visible;
+    display: block;
+    position: relative;
+    height: auto;
+    font-size: 20pt;
+    border-top: 2px solid #ccc;
+  }
+    #presentation {
+    overflow: visible;
+    height: auto;
+  }
+  .temphidden {
+    display: inherit;
+    visibility: visible;
+  }
+  @page {
+    size: landscape;
+  }
+  body {
+    font-size: 12pt;
+    background: white;
+  }
+}
