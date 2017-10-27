@@ -465,6 +465,29 @@ While as developers we’re finally enjoying the ubiquity of modern browsers acc
 
 
 
+<!-- Four points with Cans -->
+<div class="slide" style="background-image: url(img/telephonecans.jpg); background-position: bottom 100px right; background-repeat: no-repeat;">
+	<header>
+		<h1>Device Considerations - Phones aren't Laptops</h1>
+	</header>
+	<section class="flex">
+     <ul style="margin-right: 6vw">
+     	<li>Very powerful browsers</li>
+      	<li>Less powerful CPUs</li>
+      	<li>Not plugged In</li>
+      	<li>Metered data</li>
+      	<li>Tiny Screens</li>
+      	<li>Different Interactions<br/> (Touch / Keyboard / Mouse)</li>
+      </ul>
+      <ul>
+        <li>Battery</li>
+      	<li>Latency</li>
+        <li>Memory</li>
+        <li>Responsiveness</li>
+      </ul>
+     </section>
+</div>
+
 <!-- Overview of Performance -->
 <div class="slide divider">
 	<header>
@@ -481,17 +504,18 @@ While as developers we’re finally enjoying the ubiquity of modern browsers acc
 <!-- Tweet: Your mobile site might suck -->
 <div class="slide tweet">
 <div class="fuckInlineStyles">
-  <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Just because no one uses your mobile site, doesn&#39;t mean you don&#39;t need to improve it. Maybe no one uses it because the experience is awful.</p>&mdash; Dawn Parzych (@dparzych) <a href="https://twitter.com/dparzych/status/710650338596884481">March 18, 2016</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Just because no one uses your mobile site, doesn&#39;t mean you don&#39;t need to improve it. Maybe no one uses it because the experience is awful.</p>&mdash; Dawn Parzych (@dparzych) <a href="https://twitter.com/dparzych/status/710650338596884481?ref_src=twsrc%5Etfw">March 18, 2016</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
 </div>
 
 
 	
 <div class="slide tweet">
 <div class="fuckInlineStyles">
-  <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">I remember when 3G was primary mobile speed. It was slow but still worked, so why now when my phone says 3G it becomes completely useless.</p>&mdash; Stephen Gundee (@StephenGundee) <a href="https://twitter.com/StephenGundee/status/712650972133138433">March 23, 2016</a></blockquote>
-  </div>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">I remember when 3G was primary mobile speed. It was slow but still worked, so why now when my phone says 3G it becomes completely useless.</p>&mdash; Stephen Gundee (@StephenGundee) <a href="https://twitter.com/StephenGundee/status/712650972133138433?ref_src=twsrc%5Etfw">March 23, 2016</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
 </div>
 
 
@@ -517,7 +541,7 @@ While as developers we’re finally enjoying the ubiquity of modern browsers acc
 	<header><h1>2017 v 2010</h1></header> 
 	<section class="overlapping_pies">
 		<div class="big_piechart"  style="
-			    background-image: url(http://chart.googleapis.com/chart?chs=700x394&amp;cht=p&amp;chco=226daa&amp;is3D=true&amp;chd=t:1810,52,89,455,111,779,17&amp;chds=0,1714&amp;chdlp=b&amp;chma=|5);">
+			    background-image: url(http://chart.googleapis.com/chart?chs=700x394&amp;cht=p&amp;chco=226daa&amp;is3D=true&amp;chd=t:1810,52,89,455,111,779,17&amp;chds=0,1810&amp;chdlp=b&amp;chma=|5);">
 			<div class="small_piechart"  style="
 			    background-image: url(http://chart.googleapis.com/chart?chs=324x182&amp;cht=p&amp;chco=333333&amp;chd=t:416,34,25,113,2,22&amp;chbg=transparent&amp;chds=0,416&amp;chdlp=b&amp;chma=|5);"></div>
 			<span  aria-label="for a total increase of 3479% over a little under 7 years">479%</span>
@@ -564,29 +588,6 @@ Page Weight Matters"></a>
 
 
 
-
-<!-- Four points with Cans -->
-<div class="slide" style="background-image: url(img/telephonecans.jpg); background-position: bottom 100px right; background-repeat: no-repeat;">
-	<header>
-		<h1>Device Considerations - Phones aren't Laptops</h1>
-	</header>
-	<section class="flex">
-     <ul style="margin-right: 6vw">
-     	<li>Very powerful browsers</li>
-      	<li>Less powerful CPUs</li>
-      	<li>Not plugged In</li>
-      	<li>Metered data</li>
-      	<li>Tiny Screens</li>
-      	<li>Different Interactions<br/> (Touch / Keyboard / Mouse)</li>
-      </ul>
-      <ul>
-        <li>Battery</li>
-      	<li>Latency</li>
-        <li>Memory</li>
-        <li>Responsiveness</li>
-      </ul>
-     </section>
-</div>
 <!-- -->
 <div class="slide divider">
 	<header>
@@ -633,6 +634,32 @@ Page Weight Matters"></a>
 </div>
 
 
+<div class="slide">
+	<header>
+		<h1>What's involved in a page load?</h1>
+	</header>
+	<section>
+<ul class="flex arrow">
+	<li>HTTP request</li>
+	<li>DNS lookup</li>
+	<li>TCP Connect</li>
+	<li>HTTP request sent</li>
+	<li>Server Magic</li>
+	<li>Server Sends response</li>
+	<li>Browser receives/<wbr>parses response</li>
+	<li>Resources fetched from Cache</li>
+	<li>Parse &amp; Execute Scripts</li>
+	<li>Render Site</li>
+</ul>
+<ul style="margin-top: 2em">
+
+	<li>Stylesheets are blocking</li>
+	<li>Scripts are blocking.</li>
+		<li>Each request: go back to DNS lookup or HTTP Request</li>
+</ul>
+</section>
+</div>
+
 <!-- -->
 <div class="slide">
 	<header>
@@ -666,40 +693,7 @@ Page Weight Matters"></a>
 </div>-->
 
 
-<div class="slide">
-	<header>
-		<h1>What's involved in a page load?</h1>
-	</header>
-	<section>
-<ul class="flex arrow">
-	<li>HTTP request</li>
-	<li>DNS lookup</li>
-	<li>TCP Connect</li>
-	<li>HTTP request sent</li>
-	<li>Server Magic</li>
-	<li>Server Sends response</li>
-	<li>Browser receives/<wbr>parses response</li>
-	<li>Resources fetched from Cache</li>
-	<li>Parse &amp; Execute Scripts</li>
-	<li>Render Site</li>
-</ul>
-<ul style="margin-top: 2em">
-	<li>Each request: go back to DNS lookup or HTTP Request</li>
-	<li>Stylesheets are blocking</li>
-	<li>Scripts are blocking.</li>
-</ul>
-</section>
-</div>
 
-<!-- What we can measure -->
-<div class="slide">
-	<header>
-		<h1>Navigation Timing API metrics</h1>
-	</header>
-	<section style="height: 80vh; overflow: scroll">
-	<img src="img/perfmetrics.svg" alt="Navigation Timing API metrics" style="width: calc((85vw + 85vh)/2); max-height: 100vh">
-	</section>
-</div>
 
 
 
@@ -722,26 +716,18 @@ Page Weight Matters"></a>
 	</section>
 </div>
 
-<!-- Wired Waterfall-->
+
+<!-- What we can measure -->
 <div class="slide">
 	<header>
-		<h1>(Note the colors)</h1>
+		<h1>Navigation Timing API metrics</h1>
 	</header>
-	<section>
-	<img src="img/wired_latency_ttfb.png" alt="Screenshot of WebPageTest waterfall chart showing light colors in a load reflect time to first byte" style="max-width: 78vw; margin-top: -30px;"/>
-	<p class="note">TTFB = Latency + Server Time<br>Limit # of handshakes &amp; bandwidth req </p>
+	<section style="height: 80vh; overflow: scroll">
+	<img src="img/perfmetrics.svg" alt="Navigation Timing API metrics" style="width: calc((85vw + 85vh)/2); max-height: 100vh">
 	</section>
 </div>
 
-<div class="slide">
-	<header>
-		<h1>Better Performance</h1>
-	</header>
-	<section>
-	<img src="img/wpt_mlw.png" alt="Screenshot of WebPageTest waterfall chart showing light colors in a load reflect time to first byte" style="max-width: 78vw; margin-top: -10px;"/>
-	<p class="note">TTFB = Latency + Server Time<br>Limit # of handshakes &amp; bandwidth req </p>
-	</section>
-</div>
+
 
 
 <div class="slide">
@@ -775,6 +761,23 @@ Page Weight Matters"></a>
 	<p class="right"><small>Video: <a href="https://www.youtube.com/watch?v=2ksXo2_Lfl0">How Users Perceive the Speed of The Web (2015): Paul Irish / Google</a></small></p>
 	</section>
 </div>
+
+<!-- Wired Waterfall-->
+<div class="slide">
+	<header>
+		<h1>(Note the colors)</h1>
+	</header>
+	<section>
+	<img src="img/wired_latency_ttfb.png" alt="Screenshot of WebPageTest waterfall chart showing light colors in a load reflect time to first byte" style="max-width: 78vw; margin-top: -30px;"/>
+	<p class="note">TTFB = Latency + Server Time<br>Limit # of handshakes &amp; bandwidth req </p>
+	</section>
+</div>
+
+
+
+
+
+
 
 <!-- -->
 <div class="slide">
@@ -810,6 +813,26 @@ Page Weight Matters"></a>
 </article>
 	
 </div>
+
+
+
+<div class="slide object">
+  <object data="https://machinelearningworkshop.com">
+  </object>
+  <a href="https://machinelearningworkshop.com" target="play" class="objectlink">Open in separate window</a>
+</div>
+
+
+<div class="slide">
+	<header>
+		<h1>Better Performance</h1>
+	</header>
+	<section>
+	<img src="img/wpt_mlw.png" alt="Screenshot of WebPageTest waterfall chart showing light colors in a load reflect time to first byte" style="max-width: 78vw; margin-top: -10px;"/>
+	<p class="note">TTFB = Latency + Server Time<br>Limit # of handshakes &amp; bandwidth req </p>
+	</section>
+</div>
+
 
 
 <!-- -->
@@ -872,114 +895,20 @@ Page Weight Matters"></a>
 	</section>
 </div>
 
-
-<!--
-<div class="slide">
-<header><h1>PageSpeed</h1></header>
-<section>
-<dl class="hidden_dd">
-<dt>Minimize request size</dt>
- <dd>GZip all requests. </dd>
-<dt>Leverage browser caching.</dt>
- <dd>Include caching headers for all requests with a future date so previously fetched responses can be reused instead of refetched.</dd>
-<dt>Specify a cache validator</dt>
- <dd>Specify a <code>Last-Modified</code> or ETag header to enable cache validation. ETags provide revalidation tokens automatically sent by client to check if there are file changes since last requested. </dd>
-<dt>Minify CSS, JS &amp; HTML</dt>
- <dd>Removing unnecessary whitespace saves bandwidth</dd>
-<dt>Defer parsing of JavaScript</dt>
- <dd>include <code>async</code> attribute in your <code>&lt;script&gt;</code> tags so client can continue downloading assets instead of waiting as scripts are downloaded, parsed and excecuted.</dd>
-<dt>Optimize images</dt>
- <dd>Choose best format and compression on a per image basis include: type of data being encoded, image format capabilities, quality settings, resolution, and more. Leverage SVG and CSS. See previous page.</dd>
-<dt>Specify a character set</dt>
- <dd>Including a content-type header, such as <code>Content-Type: text/html; charset=UTF-8</code> reduces browser processing. Can start parsing HTML immediately when it knows which character set it has.</dd>
-<dt>Remove query strings from static resources</dt>
- <dd>Resources with a "?" in the URL are not cached by some proxy caching servers</dd>
-<dt>Specify a Vary: Accept-Encoding header</dt>
- <dd>In case client doesn't support compression, tells proxy server to store both compressed and uncompressed versions.</dd>
-<dt>Avoid CSS @import</dt>
- <dd>Only starts downing imported file once encountered rather than in parallel.</dd>
-<dt>Avoid a character set in the meta tag</dt>
- <dd>Better to include it in HTTP Content-Type header (IE8 rule)</dd>
-<dt>Avoid bad requests</dt>
- <dd>404 and 410 errors waste time. If requests are for blocking resources, it becomes a more serious problem.</dd>
-<dt>Avoid landing page redirects</dt>
- <dd>If your site requires redirects, do them server-side not client side, to reduce round trip requests. Removing HTTP redirects removes extra round trips.</dd>
-<dt>Combine images into CSS sprites</dt>
- <dd></dd>
-<dt>Enable Keep-Alive</dt>
- <dd>HTTP persistent connections allows a TCP connection to send and receive multiple HTTP requests, reducing latency for subsequent requests.</dd>
-<dt>Enable compression</dt>
- <dd>GZip!</dd>
-<dt>Inline Small CSS &amp; JS</dt>
- <dd></dd>
-<dt>Minimize redirects</dt>
- <dd>Minimizing redirects removes additional RTTs and wait time for users.</dd>
-<dt>Optimize the order of styles and scripts</dt>
- <dd></dd>
-<dt>Prefer asynchronous resources</dt>
- <dd>Many JS libraries and frameworks were originally written as synchronous scripts, but now have asynchronous versions. Use the asynchronous versions. </dd>
-<dt>Put CSS in the document head</dt>
- <dd></dd>
-<dt>Serve resources from a consistent URL</dt>
- <dd></dd>
-<dt>Serve scaled images</dt>
- <dd>Properly sized images saves bandwidth.</dd>
-<dt>Specify image dimensions</dt>
- <dd>Enables rendering page before images are downloaded. Without proper dimensions, browser will need to reflow and repaint upon image downloaded.</dd>
-</dl>
-<a class="pagelink" href="https://developers.google.com/speed/docs/insights/about#send-us-your-feedback">Page Speed</a>
-</section>
+<div class="slide object">
+  <object data="lighthouse_pre.html">
+  	<a href="lighthouse_pre.html" target="_blank">Ooops, didn't load</a>
+  </object>
+  <a href="lighthouse_pre.html" target="play" class="objectlink">Open in separate window</a>
 </div>
 
 
-<div class="slide"> 
-<header><h1>Usability Rules</h1></header> 
-<section> 
-<dl class="hidden_dd">
-<dt>Avoid plugins</dt>
- 
-<dt>Configure the viewport</dt>
- <dd>Optimize pages to display well on mobile devices by including a meta viewport in the head of the document specifying <code>width=device-width, initial-scale=1</code>.
-
-<pre>&lt;meta name=viewport content="width=device-width, initial-scale=1"&gt;</pre></dd>
-<dt>Size content to viewport</dt>
- <dd>Scrolling websites vertically is Okay, but horizontally creates poor user experience. Use media queries and <code>vh</code>, <code>vw</code> and percents for width.
-
-</dd>
-<dt>Size tap targets appropriately</dt>
- <dd>Set a minimum tap target size of  of 48 CSS pixels on a site with a properly-set mobile viewport. Make important tap targets large enough to be easy to press, ensuring there is extra spacing between smaller tap targets.</dd>
-<dt>Use legible font sizes</dt>
-
- </dl>
- <a class="pagelink" href="https://developers.google.com/speed/docs/insights/rules">Page Speed Insights</a>
- </section>
+<div class="slide object">
+  <object data="https://googlechrome.github.io/lighthouse/viewer/">
+  	<a href="mask/index.html" target="_blank">Ooops, didn't load</a>
+  </object>
+  <a href="https://googlechrome.github.io/lighthouse/viewer/" target="play" class="objectlink">Open in separate window</a>
 </div>
-
-
-<div class="slide"> 
-<header><h1>Image Optimization</h1></header> 
-<section> 
-<dl class="hidden_dd">
-<dt>GZip</dt>
-<dt>Remove Image Metadata</dt>
-
-<dt>Resize Images</dt>
-
-<dt>Optimize Images</dt>
-
-<dt>Use the Right Image Format</dt>
-
-<dt>Reduce the Number of Images</dt>
-
-</dl>
-<p>
-My <a href="https://www.instartlogic.com/blog/image-optimization-tips-for-improved-web-performance">Tips</a> &amp; <a href="https://calendar.perfplanet.com/2016/image-optimization/">Deep Dive</a></p>
-
-<p><strong>Note:</strong> Include an <em>alt</em> attribute on all  foreground images, with empty <a href="http://webaim.org/techniques/alttext/"><em>alt</em> attribute</a> for decorative images.</p>
-</section>
-</div>
-
-
 	
 
 <!-- -->
@@ -999,11 +928,6 @@ height</td><td>	height of device's virtual viewport</td></tr>
 <tr><td>maximum-scale</td><td>	If user scalable, maximum amount visitor can zoom on the page.</td></tr>
 <tr><td>user-scalable</td><td>Can the web zoom in and out. Values are yes or no.</td></tr>
 </table>
-<!--
-     <pre>@viewport { viewport-properties }</pre>
-<small>
-     Resource: <a href="http://www.quirksmode.org/mobile/viewports2.html" target="_blank">A tale of 2 viewports</a><br>
-      Tutorial: <a href="http://estelle.github.io/CSS-Workshop/part_04_media.html" target="_blank">Media Queries slide deck</a></small>-->
     </section>
 </div>
 
@@ -1300,9 +1224,9 @@ Sprites</li>
 			<li>Remove muted audio</li>
 		</ol>
 			<div>
-		<h3>July 1, 2017</h3>
-	<img style="height: 40vmin; max-width: none; display: inline-block; margin: auto;" id="bytesperpage" class="chart" src="http://chart.googleapis.com/chart?chs=700x394&amp;cht=p&amp;chco=226daa&amp;is3D=true&amp;chd=t:1714,26,60,347,97,729,14&amp;chds=0,1683&amp;chdlp=b&amp;chdl=total 3034 kB&amp;chl=Images+-+1714+kB%7CHTML+-+25+kB%7CStylesheets+-+60+kB%7CScripts+-+347+kB%7CFonts+-+97+kB%7CVideo+-+729+kB%7COther+-+14+kB&amp;chma=|5&amp;chtt=Average+Bytes+per+Page+by+Content+Type+July+1,+2017"
-	alt='In July 2017, content is Images=1714kb, HTML=25kb, Stylesheets=60kb, Scripts=347kb, Fonts=97kb, Video=329 and Other=14kb for a total of 3034 kb'></div>
+		<h3>October 1, 2017</h3>
+	<img style="height: 40vmin; max-width: none; display: inline-block; margin: auto;" id="bytesperpage" class="chart" src="http://chart.googleapis.com/chart?chs=700x394&amp;cht=p&amp;chco=226daa&amp;is3D=true&amp;chd=t:1810,52,89,455,111,779,17&amp;chds=0,1810&amp;chdlp=b&amp;chdl=total 3354 kB&amp;chl=Images+-+1810+kB%7CHTML+-+52+kB%7CStylesheets+-+89+kB%7CScripts+-+455+kB%7CFonts+-+111+kB%7CVideo+-+779+kB%7COther+-+17+kB&amp;chma=|5&amp;chtt=Average+Bytes+per+Page+by+Content+Type+October+1,+2017"
+	alt='In October 2017, content is Images=1810kb, HTML=52kb, Stylesheets=89kb, Scripts=455kb, Fonts=111kb, Video=779 and Other=17kb for a total of 3,554 kb'></div>
 			<div>
 				<h3>July 1, 2015</h3>
 	<img style="height: 40vmin; max-width: none; display: inline-block; margin: auto;" id="bytesperpage" class="chart" src="http://chart.googleapis.com/chart?chs=700x394&amp;cht=p&amp;chco=22aa6d&amp;is3D=true&amp;chd=t:1348,55,68,344,102,204,4&amp;chds=0,1348&amp;chdlp=b&amp;chdl=total 2135 kB&amp;chl=Images+-+1348+kB%7CHTML+-+55+kB%7CStylesheets+-+68+kB%7CScripts+-+344+kB%7CFonts+-+102+kB%7CVideo+-+204+kB%7COther+-+4+kB&amp;chma=|5&amp;chtt=Average+Bytes+per+Page+by+Content+Type+July+1,+2015"
@@ -1322,11 +1246,11 @@ Sprites</li>
 	<section>
 	<pre>&lt;video .... id="hero-video"></pre>
 <p>Do you really need a hero video? On a mobile device?</p>
-<pre>@media screen and (max-width: 650px) {
-  #hero-video {
-    display: none;
-  }
+<pre>#hero-video {  display: none;  }
+@media screen and (min-width: 640px) {
+  #hero-video {  display: inherit;  }
 }</pre>
+<pre><a href="http://wicg.github.io/netinfo/#underlying-connection-technology" target="_play">navigator.connection.effectiveType</a></pre>
 </section>
 </div>
 
@@ -1586,7 +1510,7 @@ development, but increase energy use.</li>
 	<header>
 		<h1>AMP: Accelerated Mobile Pages</h1>
 	</header>
-	<section><img src="img/amp.jpg" alt="AMP">
+	<section class="flex" style="justify-content: space-between;"><div><img src="img/amp.jpg" alt="AMP"></div><div><img src="img/amp_ick.jpg" alt="Fake News AMP Carousel" style="max-height: 90vh"></div>
 	</section>
 </div>
 
