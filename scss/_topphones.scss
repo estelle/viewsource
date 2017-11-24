@@ -1,10 +1,14 @@
 .topphones {
 	border: 1px solid $ilblue;
-		border-spacing: 0px; 
-	tr:nth-of-type(odd) {
+	border-spacing: 0px; 
+	caption-side: bottom;
+	caption {
+		font-size: smaller;
+	}
+	tbody tr:nth-of-type(odd) {
 		background-color: $subtle;
 	}
-	tr:first-of-type {
+	thead tr {
 		color: white;
 		background-color: $ilblue;
 	}
